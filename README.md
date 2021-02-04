@@ -1,6 +1,6 @@
 # SQL
 
-1. Union
+# 1. Union
 
 < query 1 >
 UNION [ALL]
@@ -42,4 +42,5 @@ The following conditions should be observed:
     1752  	1150
     
     
+  
     
