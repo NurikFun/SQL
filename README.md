@@ -19,7 +19,7 @@ The following conditions should be observed:
   4. The ORDER BY clause is applied to the union result, so it may only be written at the end of the combined query.
   
  
- Find the model numbers and prices of the PCs and laptops:
+ **Find the model numbers and prices of the PCs and laptops:**
  
  SELECT model, price FROM PC
  UNION
@@ -42,5 +42,28 @@ The following conditions should be observed:
     1752  	1150
     
     
-  
+# 2. Intersect and Except (Пересечение и разность)
+
+Within the standard of  SQL language there are clauses of SELECT statement for fulfillment of operations of intersection and subtraction of the queries. Such queries are INTERSECT  [ALL] (intersection) and EXCEPT [ALL] (subtraction), which operate analogously to UNION statement. Into the resulting set only those rows are included that are in the both queries (INTERSECT) and only those rows of the first query, that are absent in the second one (EXCEPT). Thereby both of the queries, that are involved in the operation, should be characterized by the same number of columns, and the corresponding columns should have the same (or implied) data types. The titles of the columns of the resulting set are formed from the titles of the first query.
+
+If the key word ALL is not used, that the duplicate strings should be automatically canceled during fulfillment of the operation. If ALL is indicated, than the number of duplicate rows is subject to the following rules (n1 – the number of duplicate rows of the first query, n2 – the number of duplicate rows of the second query):
+
+INTERSECT ALL: min(n1, n2)
+EXCEPT ALL: n1 - n2, if n1>n2.
+
+**Select the ships, which are included both into Ships table and into Outcomes table.**
+
+SELECT name FROM Ships
+INTERSECT
+SELECT ship FROM Outcomes;
+
+**Find the makers producing PCs but not laptops.**
+
+select maker from product where type = 'PC'
+intersect 
+select maker from product where type = 'Laptop'
+
+
+
+
     
