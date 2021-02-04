@@ -77,11 +77,14 @@ WHERE price > (SELECT MIN(price)
  FROM Laptop
  );
  
-model	price
-1121	850
-1233	950
-1233	970
-1233	980
+ 
+| model  | price |
+| ------------- | ------------- |
+| 1121  | 950  |
+| 1233  | 950  |
+| 1233  | 970  |
+| 1233  | 980  |
+
 
 
 In its turn, subqueries may also include nested queries.
@@ -100,9 +103,12 @@ FROM (SELECT 'laptop' AS type, model, speed
  FROM product
  ) AS prod ON lap.model = prod.model;
  
- maker	type	model	speed
-  B	laptop	1750	750
-  A	laptop	1752	750
+ 
+| maker  | type | model  | speed |
+| ------------- | ------------- | ------------- | ------------- |
+| B  | laptop  | 1750  | 750  | 
+| A  | laptop  | 1750  | 750  | 
+
   
   
  And finally, queries may be present in the SELECT clause. Sometimes, this allows a query to be formulated in a shorthand form.
@@ -116,15 +122,10 @@ FROM (SELECT 'laptop' AS type, model, speed
  FROM PC
  ) AS dif_price;
  
- dif_price
- 328.3333
-
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
+| dif_price  |
+| ------------- |
+| 328.3333  |
+ 
 
 
     
