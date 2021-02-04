@@ -65,5 +65,59 @@ select maker from product where type = 'Laptop'
 
 
 
+# 3. Again about subqueries
+
+It should be noted that a query returns generally a collection of values, so a run-time error may occur during the query execution if one uses the subquery in the WHERE clause without EXISTS, IN, ALL, and ANY predicates, which result in Boolean value.
+
+**Find the models and the prices of PC priced above laptops at minimal price:**
+
+SELECT DISTINCT model, price
+FROM PC
+WHERE price > (SELECT MIN(price) 
+ FROM Laptop
+ );
+ 
+ model	price
+  1121	850
+  1233	950
+  1233	970
+  1233	980
+
+
+In its turn, subqueries may also include nested queries.
+
+On the other hand, it is natural that subquery returning a number of rows and consisting of multiple columns may as well be used in the FROM clause. This restricts a column/row set when joining tables.
+
+
+**Find the maker, the type, and the processor's speed of the laptops with speed above 600 MGz.**
+
+SELECT prod.maker, lap.*
+FROM (SELECT 'laptop' AS type, model, speed
+ FROM laptop
+ WHERE speed > 600
+ ) AS lap INNER JOIN 
+ (SELECT maker, model
+ FROM product
+ ) AS prod ON lap.model = prod.model;
+ 
+ maker	type	model	speed
+  B	laptop	1750	750
+  A	laptop	1752	750
+  
+  
+ And finally, queries may be present in the SELECT clause. Sometimes, this allows a query to be formulated in a shorthand form.
+ 
+ **Find the difference between the average prices of PCs and laptops, i.e. by how mach is the laptop price higher than that of PC in average.**
+ 
+ SELECT (SELECT AVG(price)
+ FROM Laptop
+ ) -
+ (SELECT AVG(price)
+ FROM PC
+ ) AS dif_price;
+ 
+ dif_price
+ 328.3333
+
 
     
