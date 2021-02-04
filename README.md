@@ -77,11 +77,11 @@ WHERE price > (SELECT MIN(price)
  FROM Laptop
  );
  
- model	price
-  1121	850
-  1233	950
-  1233	970
-  1233	980
+model	price
+1121	850
+1233	950
+1233	970
+1233	980
 
 
 In its turn, subqueries may also include nested queries.
