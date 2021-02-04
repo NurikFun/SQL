@@ -1,6 +1,6 @@
 # SQL
 
-_1. Union_
+1. Union
 
 < query 1 >
 UNION [ALL]
